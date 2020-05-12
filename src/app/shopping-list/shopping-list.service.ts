@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class ShoppingListService {
   ingredientChange = new Subject<Ingredient[]>();
-  selectedIng: number;
+  selectedIng = new Subject<number>();
   private ingredients: Ingredient[];
 
   constructor() {
@@ -21,22 +21,12 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-    this.emitChanges();
-  }
-
-  cleareList() {
-    this.ingredients = [];
-    this.emitChanges();
-  }
-
-  deleteIngrediant() {
-    if (this.ingredients.length !== 0 && this.selectedIng >= 0 && this.selectedIng < this.ingredients.length) {
-      this.ingredients.splice(this.selectedIng, 1);
-    }
-    this.selectedIng = -1;
-
     this.emitChanges();
   }
 
@@ -45,8 +35,32 @@ export class ShoppingListService {
     this.emitChanges();
   }
 
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.emitChanges()
+  }
 
-  emitChanges() {
+
+  // deleteIngrediant() {
+  //   if (this.ingredients.length !== 0 && this.selectedIng >= 0 && this.selectedIng < this.ingredients.length) {
+  //     this.ingredients.splice(this.selectedIng, 1);
+  //   }
+  //   this.selectedIng = -1;
+
+  //   this.emitChanges();
+  // }
+
+  delete(index: number) {
+    this.ingredientChange.next(this.ingredients.splice(index, 1));
+    this.emitChanges();
+  }
+
+
+
+
+
+
+  private emitChanges() {
     this.ingredientChange.next(this.ingredients.slice());
   }
 }
