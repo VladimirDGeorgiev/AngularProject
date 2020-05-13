@@ -4,27 +4,42 @@ import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.mode';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   recipeChange = new Subject<Recipe[]>();
+  url: string = 'https://recipe-c1784.firebaseio.com/';
 
-  private recipes: Recipe[] = [
-    new Recipe(`Kavarma`, `This is a recipe 1`, `https://recepti.ezine.bg/files/lib/500x350/pileshka-kavarma-tigan.jpg`,
-      [new Ingredient('Kompiri', 5),
-      new Ingredient('Morkovi', 2)
-      ]),
-    new Recipe(`Shopska Salata`, `This is a recipe 2`, `https://recepti.gotvach.bg/files/lib/500x350/shopska-salata.jpg`,
-      [new Ingredient('Domati', 5),
-      new Ingredient('Krastavici', 2)
-      ])
-  ];
+  private recipes: Recipe[] = [];
 
-  constructor(private shoppingListServer: ShoppingListService) { }
+  constructor(
+    private shoppingListServer: ShoppingListService,
+    private http: HttpClient) {
+  }
 
-  getRecipe() {
+  storeRecipe() {
+    this.http.put(this.url + 'recipes.json', this.recipes)
+      .subscribe((response) => (console.log(response))
+      )
+  }
+
+  fetchRecipe() {
+    return this.http.get<Recipe[]>(this.url + 'recipes.json')
+      .pipe(map(recipes => {
+        return recipes.map(recipe => {
+          return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] }
+        })
+      }), tap(response => (
+        this.recipes = response
+      )))
+  }
+
+
+  getRecipes() {
     return this.recipes.slice();
   }
 
@@ -51,7 +66,7 @@ export class RecipeService {
     this.emitChanges();
   }
 
-  private emitChanges() {
+  emitChanges() {
     this.recipeChange.next(this.recipes.slice());
   }
 }
