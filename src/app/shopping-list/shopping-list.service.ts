@@ -41,24 +41,10 @@ export class ShoppingListService {
   }
 
 
-  // deleteIngrediant() {
-  //   if (this.ingredients.length !== 0 && this.selectedIng >= 0 && this.selectedIng < this.ingredients.length) {
-  //     this.ingredients.splice(this.selectedIng, 1);
-  //   }
-  //   this.selectedIng = -1;
-
-  //   this.emitChanges();
-  // }
-
   delete(index: number) {
     this.ingredientChange.next(this.ingredients.splice(index, 1));
     this.emitChanges();
   }
-
-
-
-
-
 
   private emitChanges() {
     this.ingredientChange.next(this.ingredients.slice());
