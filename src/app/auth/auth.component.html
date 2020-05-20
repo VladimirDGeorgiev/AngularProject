@@ -1,11 +1,14 @@
 <div class="row">
-    <div class="col-xs 12 col-md-6 col-md-offset-3">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
         <!-- <app-alert [message]="error" *ngIf="error" (close)="onAlertClose()"></app-alert> -->
         <ng-template appPlaceholder></ng-template>
         <div *ngIf="isLoading" style="text-align: center;">
             <app-loading-spiner></app-loading-spiner>
         </div>
+
+
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+            <h2>Plaase {{ isLoginMode? 'Login': 'Sign up' }}</h2>
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="text" id="email" class="form-control" ngModel name="email" required email>
@@ -15,9 +18,15 @@
                 <input type="password" id="password" class="form-control" ngModel name="password" required
                     minlength="6">
             </div>
+            <div class="form-group" *ngIf="!isLoginMode">
+                <label for="repassword">Repeat password</label>
+                <input type="password" id="repassword" class="form-control" ngModel name="repassword" required
+                    minlength="6">
+            </div>
             <div>
                 <button class="btn btn-primary" type="submit"
-                    [disabled]="!authForm.valid">{{isLoginMode ? 'Login':'Sign Up'}}</button>|
+                    [disabled]="!authForm.valid">{{isLoginMode ? 'Login':'Sign Up'}}</button>
+                {{isLoginMode ? 'you are not registered yet':'You have a registration'}}
                 <button class="btn btn-primary" (click)="onSwitchMode()" type="button">Switch to
                     {{isLoginMode ? 'Sign Up':'Login'}}</button>
             </div>

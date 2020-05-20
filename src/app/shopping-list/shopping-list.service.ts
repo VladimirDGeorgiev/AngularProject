@@ -11,10 +11,7 @@ export class ShoppingListService {
   private ingredients: Ingredient[];
 
   constructor() {
-    this.ingredients = [
-      new Ingredient(`Apples`, 5),
-      new Ingredient(`Tomato`, 10)
-    ];
+    this.ingredients = [];
   }
 
   getIngredients() {

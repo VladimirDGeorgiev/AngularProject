@@ -27,13 +27,17 @@ export class RecipeDetailComponent implements OnInit {
     );
   }
 
-  addIngredients() {
-    this.recipeServer.addIngredients(this.recipe.ingredients);
+  addIngredientsToShoppingList() {
+    this.recipeServer.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 
   onDelete() {
-    this.recipeServer.deleteRecipe(this.id);
-    this.router.navigate(['/recipes']);
+    this.recipeServer.deleteRecipe(this.id).subscribe((recipe: Recipe[]) => {
+
+      this.recipeServer.emitChanges();
+      this.router.navigate(['/recipes']);
+    })
+
   }
 
 }

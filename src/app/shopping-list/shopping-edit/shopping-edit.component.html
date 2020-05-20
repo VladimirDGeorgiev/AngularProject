@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <form (ngSubmit)="addNewIng(f)" #f="ngForm">
             <div class="row">
-                <div class="col-sm-5 form-group">
+                <div class="col-sm-8 form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" class="form-control" name="name" ngModel required>
                 </div>
@@ -11,12 +11,18 @@
                     <input type="number" id="amaunt" class="form-control" name="amaunt" ngModel required
                         pattern="^[1-9]+[0-9]*$">
                 </div>
+                <div class="col-sm-2 form-group">
+                    <label for="type">Type:</label>
+                    <select class="form-control" name="type" ngModel required>
+                        <option *ngFor="let typeIng of types" value="{{ typeIng }}">{{ typeIng }}</option>
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <button class="btn btn-success" type="submit"
                         [disabled]="!f.valid">{{editMode ? 'Update':'Add'}}</button>
-                    <button *ngIf = "editMode" (click)= "deleteIng()" class="btn btn-danger" type="button">Delete</button>
+                    <button *ngIf="editMode" (click)="deleteIng()" class="btn btn-danger" type="button">Delete</button>
                     <button (click)="clearShoppingList()" class="btn btn-primary" type="button">Cleare</button>
                 </div>
             </div>

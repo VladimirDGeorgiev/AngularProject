@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  /*font: 16px/1.5 Helvetica, sans-serif;*/
+}
+
+body {
+  background-image: url(./app/img/herbs-906140_1920.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Georgia, serif;
+  font-size: 1em;
+  line-height: 1.2;
+  /*font: 1em/1.2 Georgia, serif;*/
+  margin: 1em 0 0.5em 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.col-xs-12 {
+  background-color: rgba($color: #ffff, $alpha: 0.4);
+}

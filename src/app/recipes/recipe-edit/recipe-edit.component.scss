@@ -1,8 +1,38 @@
+.row {
+  background-color: rgba($color: #ffff, $alpha: 0.2);
+}
+
 .ingr {
-  margin-top: 10px;
+  margin-top: 0.2rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
   border: 1px solid red;
+}
+
+.ingr > div {
+  padding: 1px;
+}
+
+.ingr > div input,
+select {
+  padding: 3px 3px;
+  font-weight: bolder;
+}
+
+.heading-ingredients {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.heading-ingredients > div {
+  padding: 0;
+}
+
+.heading-ingredients > div p {
+  padding: 0;
+  font-weight: bold;
 }

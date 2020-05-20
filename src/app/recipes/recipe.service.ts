@@ -24,7 +24,6 @@ export class RecipeService {
   }
 
   storeRecipe() {
-
     this.http.put(this.url + 'recipes.json', this.recipes)
       .subscribe((response) => (console.log(response))
       )
@@ -55,21 +54,23 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
+    return this.http.put(this.url + 'recipes.json', this.recipes)
     this.emitChanges();
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
+    return this.http.put(this.url + 'recipes.json', this.recipes)
     this.emitChanges();
   }
 
-  addIngredients(ingredients: Ingredient[]) {
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListServer.addIngredients(ingredients);
   }
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
-    this.emitChanges();
+    return this.http.put(this.url + 'recipes.json', this.recipes)
   }
 
   emitChanges() {

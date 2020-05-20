@@ -35,14 +35,17 @@ export class AuthComponent implements OnDestroy {
 
     const email = form.value.email;
     const password = form.value.password;
+    const repassword = form.value.repassword;
     let authObs = new Observable<AuthResponceData>();
 
     this.isLoading = true;
     if (this.isLoginMode) {
       //Login
       authObs = this.authService.login(email, password);
+    } else if (password !== repassword) {
+      this.showErrorAlert('Password and repeat password must be the same');
+      this.isLoading = false;
     } else {
-      //Sign Up
       authObs = this.authService.signUp(email, password);
     }
 
