@@ -1,10 +1,35 @@
-<a style="cursor: pointer;" [routerLink]="[id]" class="list-group-item clearfix" routerLinkActive="active">
+<!-- <a style="cursor: pointer;" [routerLink]="[id]" class="list-group-item clearfix" routerLinkActive="active">
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-        <p class="list-group-item-text">{{recipe.description}}</p>
+        <p class="list-group-item-text">{{recipe.description | shorten }} </p>
     </div>
     <span class="pull-right">
         <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="img-responsive center-block img-rounded"
             style="max-height: 10rem;">
     </span>
+</a> -->
+<a class="recipe-list__item" style="cursor: pointer;" [routerLink]="[id]">
+    <div class="img-container">
+        <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="item-img">
+        <h6 class="item__heading">{{recipe.name}}</h6>
+    </div>
+
+    <div class="text-items">
+        <div class="text-item preparations-time">
+            <h5>Prep Time</h5>
+            <p>{{recipe.prepTime}}min</p>
+        </div>
+        <div class="text-item preparations-cook-time">
+            <h5>Cook Time</h5>
+            <p>{{recipe.coolTime}}min</p>
+        </div>
+        <div class="text-item preparations-serves">
+            <h5>Serves</h5>
+            <p>{{recipe.serves}}</p>
+        </div>
+        <div class="text-item preparations-difficulty">
+            <h5>Difficulty</h5>
+            <p>{{recipe.difficulty}}</p>
+        </div>
+    </div>
 </a>

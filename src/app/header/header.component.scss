@@ -1,15 +1,121 @@
-.nav > li {
-  background-color: rgba(255, 255, 255, 0.8);
+.backdrop {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9;
 }
 
-.nav > li > a {
-  color: black;
+.main-header {
+  display: block;
+  background-color: #2A9D8F;
 }
 
-.nav > li:hover {
-  background-color: rgba(240, 240, 240, 1);
+.toggle-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 3rem;
+  width: 3rem;
+  padding: 3px;
+  border: none;
+  margin-left: 0.6rem;
+  background: transparent;
+  outline: none;
 }
 
-.active {
-  background-color: rgba(240, 240, 240, 1);
+.toggle-button__bar {
+  background: #E9C46A;
+  height: 0.3rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+
+.main-nav {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #2A9D8F;
+  z-index: 10;
+}
+
+.main-nav_items {
+  display: flex;
+  padding: 2rem;
+  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  list-style: none;
+}
+
+.main-nav_item {
+  padding: 0.4rem;
+  margin: 0.2rem 0;
+  background: #264653;
+  border-radius: 5px;
+}
+
+.main-nav_item.active {
+  background: #81ac79;
+}
+
+.main-nav_item a {
+  color: #E9C46A;
+  font: inherit;
+  font-weight: bold;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+.desktop-nav_items {
+  display: flex;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+}
+
+.desktop-nav_item {
+  padding: 0.4rem;
+  margin: 0 0.4rem;
+  background: #264653;
+  border-radius: 5px;
+}
+
+.desktop-nav_item a {
+  color: #E9C46A;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.desktop-nav_item.active {
+  background: #81ac79;
+}
+
+.open {
+  display: block;
+}
+
+@media (min-width: 600px) {
+  .desktop-nav {
+    display: block;
+  }
+
+  .toggle-button {
+    display: none;
+  }
 }

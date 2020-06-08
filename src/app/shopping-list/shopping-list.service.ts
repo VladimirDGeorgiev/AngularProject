@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ingredient } from '../shared/ingredient.mode';
+import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ShoppingListService {
   private ingredients: Ingredient[];
 
   constructor() {
-    this.ingredients = [];
+    this.ingredients = [new Ingredient("Яйца", 6, "бр"), new Ingredient("Домати", 2, "kg"), new Ingredient("Масло", 500, "g"),];
   }
 
   getIngredients() {

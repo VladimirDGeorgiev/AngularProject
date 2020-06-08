@@ -1,4 +1,79 @@
-<div class="row">
+<div class="detail">
+    <div class="detail--header">
+        <div class="img--container">
+            <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="img">
+        </div>
+        <h3 class="detail--header__title">{{recipe.name}}</h3>
+        <p class="detail--header__description">{{recipe.description}}</p>
+        <div class="detail--header__btn" appDropdown>
+            <button type="button" class="btn-main">Manage Recipe<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="addIngredientsToShoppingList()" style="cursor: pointer;">Add Ingredients to Shopping
+                        List</a></li>
+                <li><a [routerLink]="['edit']" style="cursor: pointer;">Edit Recipe</a></li>
+                <li><a (click)="onDelete()" style="cursor: pointer;">Delete Recipe</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="detail--preps">
+        <div class="detail--prep prep--time">
+            <h5>Prep Time</h5>
+            <p>{{recipe.prepTime}}min</p>
+        </div>
+        <div class="detail--prep prep--cook--time">
+            <h5>Cook Time</h5>
+            <p>{{recipe.coolTime}}min</p>
+        </div>
+        <div class="detail--prep prep--serves">
+            <h5>Serves</h5>
+            <p>{{recipe.serves}}</p>
+        </div>
+        <div class="detail--prep prep-difficulty">
+            <h5>Difficulty</h5>
+            <p>{{recipe.difficulty}}</p>
+        </div>
+    </div>
+
+    <div class="detail--main">
+        <div class="detail--main__nav">
+            <a class="nav--ingr" (click)="onSelectIngredients()" [ngClass]="{'active--nav': isActiveNavingredients}">
+                <h3>Ingredients</h3>
+            </a>
+            <a class="nav--method" (click)="onSelectMethod()" [ngClass]=" {'active--nav': !isActiveNavingredients}">
+                <h3>Method</h3>
+            </a>
+        </div>
+        <div class="detail--main__ingredients" [ngClass]="{'closed': !isActiveNavingredients}">
+            <ul class="ingredients">
+                <li class="ingredient" *ngFor="let ingredient of  recipe.ingredients">
+                    <P>{{ingredient.amaunt}} {{ingredient.type}}</P>
+                    <p>{{ingredient.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="detail--main__steps" [ngClass]="{'closed': isActiveNavingredients}">
+            <div class="img--container">
+                <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="img">
+            </div>
+            <ul class="steps">
+                <!-- *ngFor="let step of recipe.steps" -->
+                <li class="step" *ngFor="let step of  recipe.steps">
+                    <h3>{{step.title}} </h3>
+                    <p>{{step.content}}</p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- <div class="row">
     <div class="col-xs-12">
         <h3>{{recipe.name}}</h3>
     </div>
@@ -44,4 +119,4 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->

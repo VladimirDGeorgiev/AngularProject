@@ -30,17 +30,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe();
   }
 
-  // onFetch() {
-  //   this.recipeService.fetchRecipe().subscribe(
-  //     () => (this.recipeService.emitChanges())
-  //   );
-
-  // }
-
-  // onSave() {
-  //   this.recipeService.storeRecipe();
-  // }
-
   onLogout() {
     this.error = environment.logoutMessage;
 
@@ -53,6 +42,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onConfirmLogout() {
     this.error = null;
     this.authService.logout();
+  }
+
+  onOpenMobileMenu(mainNav: HTMLElement, backdrop: HTMLElement) {
+    mainNav.classList.add("open")
+    backdrop.classList.add("open")
+  }
+
+  onCloseMobileMenu(mainNav: HTMLElement, backdrop: HTMLElement) {
+    mainNav.classList.remove("open")
+    backdrop.classList.remove("open")
   }
 
 

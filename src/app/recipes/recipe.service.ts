@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
 
 import { Recipe } from './recipe.model';
-import { Ingredient } from '../shared/ingredient.mode';
+import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { AuthService } from '../auth/auth.service';
 
@@ -33,14 +33,15 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.url + 'recipes.json')
       .pipe(
         map(recipes => {
+          if (recipes === null) {
+            return [];
+          }
           return recipes.map(recipe => {
-            return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] }
+            return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [], steps: recipe.steps ? recipe.steps : [] }
           })
         }), tap(response => (
           this.recipes = response
         )))
-
-
   }
 
 

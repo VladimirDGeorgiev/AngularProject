@@ -1,17 +1,222 @@
-.heading-ingredients {
-  padding-left: 15px;
-  padding-right: 15px;
+// .heading-ingredients {
+//   padding-left: 15px;
+//   padding-right: 15px;
+// }
+
+// .heading-ingredients > div {
+//   padding: 0;
+// }
+
+// .heading-ingredients > div > p {
+//   padding: 0 10px;
+//   font-weight: bold;
+// }
+
+// .amaunt p {
+//   text-align: right;
+// }
+
+@import "../../../_variables.scss";
+
+.detail {
+  margin: 0;
+  padding: 0 1rem;
+  background-color: white;
+
+
+  .detail--header {
+
+    .img--container {
+      width: calc(100% + 2rem);
+      transform: translate(-1rem);
+
+      .img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__title {
+      font-weight: bold;
+    }
+
+    &__btn {
+      position: relative;
+    }
+  }
+
+  .detail--preps {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+
+    .detail--prep {
+      flex: 1 1 50%;
+      text-align: center;
+
+      h5 {
+        margin: 0;
+        padding: 0.2rem;
+        color: map-get($colors, gray);
+        font-size: 0.8rem;
+      }
+
+      p {
+        color: black;
+        font-weight: bold;
+        padding: 0.2rem;
+        font-size: 1rem;
+      }
+    }
+
+    .prep--cook--time,
+    .prep--time {
+      border-bottom: $border-default;
+    }
+
+    .prep--serves,
+    .prep--time {
+      border-right: $border-default;
+    }
+
+  }
+
+  .detail--main {
+    &__nav {
+      display: flex;
+
+      .nav--ingr,
+      .nav--method {
+        flex: 1 1 50%;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        color: map-get($colors, gray);
+        background-color: lighten($color: map-get($colors, gray), $amount: 30);
+        -webkit-box-shadow: inset 0px 0px 25px 0px rgb(126, 125, 125);
+        -moz-box-shadow: inset 0px 0px 25px 0px rgb(126, 125, 125);
+        box-shadow: inset 0px 0px 25px 0px rgb(126, 125, 125);
+      }
+
+      .active--nav {
+        color: black;
+        background-color: transparent;
+        box-shadow: none;
+      }
+
+    }
+
+    &__steps .img--container {
+      display: none;
+    }
+
+    .ingredients {
+      list-style: url('../../shared/grill.svg');
+    }
+
+    .ingredient p {
+      display: inline;
+    }
+
+    .ingredient p:first-child {
+      display: inline-block;
+      min-width: 7rem;
+    }
+
+    .closed {
+      display: none;
+    }
+  }
 }
 
-.heading-ingredients > div {
-  padding: 0;
+@media (min-width: 48rem) {
+  .detail {
+    .detail--header .img--container {
+      height: 10rem;
+      overflow: hidden;
+
+      .img {
+        filter: blur(10px);
+      }
+    }
+
+    .detail--preps {
+      border-top: $border-default;
+      border-bottom: $border-default;
+
+      .detail--prep {
+        flex: 1 1 25%;
+        border: none;
+        position: relative;
+      }
+
+      .detail--prep:after {
+        content: "";
+        background: rgba(201, 201, 201);
+        position: absolute;
+        bottom: 25%;
+        right: 0;
+        height: 50%;
+        width: 3px;
+      }
+
+      .detail--prep:last-child:after {
+        content: none;
+      }
+    }
+
+    .detail--main {
+      display: flex;
+      flex-wrap: wrap;
+
+      .detail--main__nav {
+        flex: 1 1 100%
+      }
+
+      .nav--method,
+      .nav--ingr {
+        color: black;
+        background-color: transparent;
+        box-shadow: none;
+      }
+
+      .nav--ingr {
+        border-right: 1px black solid;
+      }
+
+
+
+      &__ingredients {
+        flex: 1 1 50%;
+        border-right: 1px black solid;
+      }
+
+      &__steps {
+        flex: 1 1 50%;
+        padding: 0 1rem;
+
+        .img--container {
+          display: block;
+
+          .img {
+            width: 100%;
+          }
+        }
+      }
+
+      .closed {
+        display: block;
+      }
+    }
+
+  }
 }
 
-.heading-ingredients > div > p {
-  padding: 0 10px;
-  font-weight: bold;
-}
+@media (min-width: 1350px) {
 
-.amaunt p {
-  text-align: right;
+  .detail--header,
+  .detail .detail--preps,
+  .detail--main {
+    margin: 0 calc((100vw - 1350px)/2);
+  }
 }

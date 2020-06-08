@@ -9,15 +9,17 @@ import { BasicHighlightDirective } from './basic-highlight/basic-highlight.direc
 import { BetterHighlightDirective } from './basic-highlight/better-highlight.directive';
 import { UnlessDirective } from './basic-highlight/unless.directive';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { AuthModule } from './auth/auth.module';
+import { FooterComponent } from './footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     BasicHighlightDirective,
     BetterHighlightDirective,
     UnlessDirective,
@@ -29,7 +31,8 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     SharedModule,
     CoreModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

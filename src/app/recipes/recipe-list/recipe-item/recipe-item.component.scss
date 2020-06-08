@@ -1,17 +1,99 @@
-.list-group-item {
+@import "../../../../_variables.scss";
+
+.recipe-list__item {
   display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
-}
+  flex-direction: column;
+  text-decoration: none;
+  font: inherit;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 550px;
+  min-width: 250px;
+  margin-bottom: 1rem;
 
-.pull-left {
-  flex: 1 1 100%;
-}
+  -webkit-box-shadow: 7px 6px 11px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 7px 6px 11px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 7px 6px 11px 3px rgba(0, 0, 0, 0.5);
 
-p {
-  padding: 0;
-}
+  .img-container {
+    position: relative;
+    overflow: hidden;
 
-a {
-  padding: 0;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      -webkit-box-shadow: inset 0px 0px 2.5rem 0.3rem rgba(0, 0, 0, 0.8);
+      -moz-box-shadow: inset 0px 0px 2.5rem 0.3rem rgba(0, 0, 0, 0.8);
+      box-shadow: inset 0px 0px 2.5rem 0.3rem rgba(0, 0, 0, 0.8);
+      z-index: 5;
+    }
+
+    .item-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .item__heading {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 1rem;
+      width: 100%;
+      margin: 0;
+      color: white;
+      font-weight: bolder;
+      font-size: 1.5rem;
+      z-index: 6;
+    }
+  }
+
+  .text-items {
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .text-item {
+      flex: 1 1 50%;
+      text-align: center;
+
+      h5 {
+        margin: 0;
+        padding: 0.2rem;
+        color: map-get($colors, gray);
+        font-size: 1rem;
+      }
+
+      p {
+        color: black;
+        font-weight: bold;
+        padding: 0.2rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    .preparations-time {
+      border-right: $border-default;
+      border-bottom: $border-default;
+    }
+
+    .preparations-cook-time {
+      border-bottom: $border-default;
+    }
+
+    .preparations-serves {
+      border-right: $border-default;
+    }
+  }
+
+  @media (min-width: 600px) {
+    & {
+      margin: 0.5rem;
+    }
+
+  }
 }

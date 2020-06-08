@@ -12,6 +12,7 @@ import { RecipeService } from '../recipe.service';
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: number;
+  isActiveNavingredients: boolean = true;
 
   constructor(private recipeServer: RecipeService,
     private route: ActivatedRoute,
@@ -39,5 +40,15 @@ export class RecipeDetailComponent implements OnInit {
     })
 
   }
+
+  onSelectIngredients() {
+    this.isActiveNavingredients = true;
+  }
+
+  onSelectMethod() {
+    this.isActiveNavingredients = false;
+  }
+
+
 
 }

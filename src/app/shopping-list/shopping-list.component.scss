@@ -1,3 +1,43 @@
-.list-group {
-  margin-top: 0.5rem;
+// Old View
+
+// .list-group {
+//   margin-top: 0.5rem;
+// }
+
+// New View
+.list-main {
+  margin: 0 1rem;
+}
+
+.ingredients {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  // background-color: rgba($color: #E76F51, $alpha: 0.8);
+
+}
+
+.ingredient {
+  margin: 0.4rem;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba($color: #E9C46A, $alpha: 0.8);
+  border-radius: 8px;
+
+}
+
+p {
+  display: block;
+  padding: 0;
+  color: black;
+}
+
+.ingredient-amaunt {
+  flex: 1 1 20%;
+}
+
+.ingredient-name {
+  flex: 1 1 80%;
 }
