@@ -1,3 +1,6 @@
+<app-confirmation-alert [message]="error" *ngIf="error" (close)="onCancalDelete()" (confirm)="onConfirmDelete()">
+</app-confirmation-alert>
+<div class="backdrop" ></div>
 <div class="detail">
     <div class="detail--header">
         <div class="img--container">
@@ -23,7 +26,7 @@
         </div>
         <div class="detail--prep prep--cook--time">
             <h5>Cook Time</h5>
-            <p>{{recipe.coolTime}}min</p>
+            <p>{{recipe.cookTime? recipe.cookTime + "min" : "-" }}</p>
         </div>
         <div class="detail--prep prep--serves">
             <h5>Serves</h5>
@@ -57,9 +60,8 @@
                 <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="img">
             </div>
             <ul class="steps">
-                <!-- *ngFor="let step of recipe.steps" -->
                 <li class="step" *ngFor="let step of  recipe.steps">
-                    <h3>{{step.title}} </h3>
+                    <h5>{{step.title}} </h5>
                     <p>{{step.content}}</p>
                 </li>
             </ul>

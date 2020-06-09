@@ -21,7 +21,7 @@
         </div>
         <div class="text-item preparations-cook-time">
             <h5>Cook Time</h5>
-            <p>{{recipe.coolTime}}min</p>
+            <p>{{recipe.cookTime? recipe.cookTime + "min" : "-" }}</p>
         </div>
         <div class="text-item preparations-serves">
             <h5>Serves</h5>

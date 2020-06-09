@@ -79,8 +79,8 @@ export class RecipeEditComponent implements OnInit {
     let recipeCookTime;
     let recipeServes;
     let recipeDifficulty = '';
-    const recipeIngredients = new FormArray([]);
-    const recipeSteps = new FormArray([]);
+    const recipeIngredients = new FormArray([], [Validators.required, Validators.min(1)]);
+    const recipeSteps = new FormArray([], [Validators.required, Validators.min(1)]);
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipeByIndex(this.id);
@@ -88,7 +88,7 @@ export class RecipeEditComponent implements OnInit {
       recipeDescription = recipe.description;
       recipeImagePath = recipe.imagePath;
       recipePrepTime = recipe.prepTime;
-      recipeCookTime = recipe.coolTime;
+      recipeCookTime = recipe.cookTime;
       recipeServes = recipe.serves;
       recipeDifficulty = recipe.difficulty;
       recipe.ingredients.length > 0 ? recipe.ingredients.forEach((ing) => {
@@ -110,9 +110,9 @@ export class RecipeEditComponent implements OnInit {
       name: new FormControl(recipeName, [Validators.required, Validators.maxLength(30)]),
       description: new FormControl(recipeDescription, [Validators.required, Validators.maxLength(200)]),
       imagePath: new FormControl(recipeImagePath, Validators.required),
-      prepTime: new FormControl(recipePrepTime, Validators.required),
-      cookTime: new FormControl(recipeCookTime),
-      serves: new FormControl(recipeServes, Validators.required),
+      prepTime: new FormControl(recipePrepTime, [Validators.required, Validators.min(1),Validators.max(360)]),
+      cookTime: new FormControl(recipeCookTime, [Validators.min(1),Validators.max(360)]),
+      serves: new FormControl(recipeServes,  [Validators.required, Validators.min(1),Validators.max(30)]),
       difficulty: new FormControl(recipeDifficulty, Validators.required),
       ingredients: recipeIngredients,
       steps: recipeSteps
@@ -124,7 +124,11 @@ export class RecipeEditComponent implements OnInit {
   }
 
   get steps() { // a getter!
-    return (this.recipeForm.get('steps') as FormArray).controls;
+    return (this.recipeForm.get('steps') as FormArray);
+  }
+
+  get name() {
+    return this.recipeForm.get('name');
   }
 
   isHaveIngredients() {

@@ -12,6 +12,8 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class RecipeService {
+
+  //localStorage.setItem('userData')
   recipeChange = new Subject<Recipe[]>();
   url: string = 'https://recipe-c1784.firebaseio.com/';
 
@@ -54,12 +56,14 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
+    let userId =JSON.parse(localStorage.getItem("userData")).id
     this.recipes.push(recipe);
-    return this.http.put(this.url + 'recipes.json', this.recipes)
+    return this.http.put(this.url +userId+"/"+ 'recipes.json', this.recipes)
     this.emitChanges();
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {
+    let userId =JSON.parse(localStorage.getItem("userData")).id
     this.recipes[index] = newRecipe;
     return this.http.put(this.url + 'recipes.json', this.recipes)
     this.emitChanges();

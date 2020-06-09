@@ -6,19 +6,19 @@ export class Recipe {
     public description: string;
     public imagePath: string;
     public prepTime: number;
-    public coolTime: number;
+    public cookTime: number;
     public serves: number;
     public difficulty: string;
     public ingredients: Ingredient[];
     public steps: Step[];
 
-    constructor(name: string, description: string, imagePath: string, prepTime: number, coolTime: number, serves: number, difficulty: string, ingredients: Ingredient[], steps: Step[]) {
+    constructor(name: string, description: string, imagePath: string, prepTime: number, cookTime: number, serves: number, difficulty: string, ingredients: Ingredient[], steps: Step[]) {
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
         this.ingredients = ingredients;
         this.prepTime = prepTime;
-        this.coolTime = coolTime;
+        this.cookTime = cookTime;
         this.serves = serves;
         this.difficulty = difficulty;
         this.steps = steps;

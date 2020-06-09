@@ -38,6 +38,7 @@
 
     &__title {
       font-weight: bold;
+      padding: 0.5rem;
     }
 
     &__btn {
@@ -82,12 +83,22 @@
   }
 
   .detail--main {
+    margin-top: 1.5rem ;
     &__nav {
       display: flex;
 
+
+      .nav--ingr{
+        flex: 0 1 35%;
+      }
+
+      .nav--method {
+        flex: 1 1 65%;
+      }
+
+
       .nav--ingr,
       .nav--method {
-        flex: 1 1 50%;
         position: relative;
         text-align: center;
         text-decoration: none;
@@ -126,6 +137,15 @@
     .closed {
       display: none;
     }
+
+    &__steps .steps {
+      list-style: decimal;
+      font-size: 1.4rem;
+      p {
+        font-size: 1rem;
+      }
+    }
+
   }
 }
 
@@ -187,12 +207,12 @@
 
 
       &__ingredients {
-        flex: 1 1 50%;
+        flex: 0 1 35%;
         border-right: 1px black solid;
       }
 
       &__steps {
-        flex: 1 1 50%;
+        flex: 1 1 65%;
         padding: 0 1rem;
 
         .img--container {

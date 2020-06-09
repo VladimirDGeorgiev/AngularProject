@@ -13,6 +13,7 @@ export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: number;
   isActiveNavingredients: boolean = true;
+  error: string = null;
 
   constructor(private recipeServer: RecipeService,
     private route: ActivatedRoute,
@@ -33,12 +34,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDelete() {
-    this.recipeServer.deleteRecipe(this.id).subscribe((recipe: Recipe[]) => {
-
-      this.recipeServer.emitChanges();
-      this.router.navigate(['/recipes']);
-    })
-
+    this.error = "Are you sure you want to delete the recipe! ";
+    
   }
 
   onSelectIngredients() {
@@ -49,6 +46,20 @@ export class RecipeDetailComponent implements OnInit {
     this.isActiveNavingredients = false;
   }
 
+
+  onCancalDelete() {
+    this.error = null;
+  }
+
+  onConfirmDelete() {
+    this.error = null;
+    this.recipeServer.deleteRecipe(this.id).subscribe((recipe: Recipe[]) => {
+
+      this.recipeServer.emitChanges();
+      this.router.navigate(['/recipes']);
+    })
+
+  }
 
 
 }
